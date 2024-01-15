@@ -4,7 +4,7 @@ import 'dotenv/config.js';
 import express from 'express';
 import logger from 'morgan';
 import path from 'path';
-import connectDb from './config/db.connection.js';
+import { connectToDb } from './config/db.connection.js';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8000;
 import userRouter from './routes/userRouter.js';
 
 //connect to database
-connectDb();
+connectToDb();
 
 //middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -28,4 +28,4 @@ app.listen(PORT, () => {
 });
 
 //route setup
-app.use('/api', userRouter);
+app.use('/', userRouter);
